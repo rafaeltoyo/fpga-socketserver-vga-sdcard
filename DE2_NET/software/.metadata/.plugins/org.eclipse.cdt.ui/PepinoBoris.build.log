@@ -1,0 +1,10 @@
+
+**** Build of configuration Nios II for project PepinoBoris ****
+
+make all 
+Info: Building ../PepinoBoris_bsp/
+make --no-print-directory -C ../PepinoBoris_bsp/
+[BSP build complete]
+[PepinoBoris build complete]
+
+**** Build Finished ****

@@ -1,0 +1,11 @@
+
+**** Clean-only build of configuration Default for project ucosii_bsp ****
+
+make clean 
+
+Cannot run program "make": Launching failed
+Error: Program "make" is not found in PATH
+
+PATH=[D:/altera/13.0/nios2eds/bin/cygpath;D:/altera/13.0/quartus/bin;D:/altera/13.0/quartus/sopc_builder/model/lib;d:\altera\13.0\quartus\bin64\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Skype\Phone\;D:\Arquivos de Programa (x86)\Git\cmd;C:\ghdl\ghdl-0.31-mcode-win32\bin;C:\gtkw\bin;C:\Users\Rafael\AppData\Local\Programs\Python\Python36-32\;C:\Users\Rafael\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Java\jre1.8.0_131\bin;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files (x86)\Bitvise SSH Client;C:\Users\Rafael\AppData\Local\Programs\Python\Python36-32\Scripts;D:\Arquivos de Programa (x86)\Matlab\runtime\win64;D:\Arquivos de Programa (x86)\Matlab\bin;D:\Arquivos de Programa (x86)\Matlab\polyspace\bin;D:\Arquivos de Programa (x86)\putty\;C:\WINDOWS\System32\OpenSSH\;C:\cygwin64\bin;C:\Users\Rafael\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Atmel\Flip 3.4.7\bin;D:\Arquivos de Programa (x86)\Quartus 13\modelsim_ase\win32aloem\;;D:\altera\13.0\modelsim_ase\win32aloem]
+
+**** Build Finished ****

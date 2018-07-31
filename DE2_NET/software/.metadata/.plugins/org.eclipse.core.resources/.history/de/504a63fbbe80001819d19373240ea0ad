@@ -1,0 +1,144 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../iniche/src/misclib/app_ping.c \
+../iniche/src/misclib/bsdsock.c \
+../iniche/src/misclib/cksum.c \
+../iniche/src/misclib/cu_srv.c \
+../iniche/src/misclib/dhcsetup.c \
+../iniche/src/misclib/genlist.c \
+../iniche/src/misclib/in_utils.c \
+../iniche/src/misclib/iniche_log.c \
+../iniche/src/misclib/iniche_qsort.c \
+../iniche/src/misclib/localtime.c \
+../iniche/src/misclib/memdev.c \
+../iniche/src/misclib/memio.c \
+../iniche/src/misclib/memwrap.c \
+../iniche/src/misclib/menulib.c \
+../iniche/src/misclib/menus.c \
+../iniche/src/misclib/msring.c \
+../iniche/src/misclib/netmain.c \
+../iniche/src/misclib/nextcarg.c \
+../iniche/src/misclib/nrmenus.c \
+../iniche/src/misclib/nvfsio.c \
+../iniche/src/misclib/nvparms.c \
+../iniche/src/misclib/parseip.c \
+../iniche/src/misclib/pcycles.c \
+../iniche/src/misclib/profiler.c \
+../iniche/src/misclib/rawiptst.c \
+../iniche/src/misclib/reshost.c \
+../iniche/src/misclib/rfsim.c \
+../iniche/src/misclib/rttest.c \
+../iniche/src/misclib/soperr.c \
+../iniche/src/misclib/strilib.c \
+../iniche/src/misclib/strlib.c \
+../iniche/src/misclib/strtol.c \
+../iniche/src/misclib/syslog.c \
+../iniche/src/misclib/task.c \
+../iniche/src/misclib/tcp_echo.c \
+../iniche/src/misclib/tcpcksum.c \
+../iniche/src/misclib/testmenu.c \
+../iniche/src/misclib/tk_crnos.c \
+../iniche/src/misclib/ttyio.c \
+../iniche/src/misclib/udp_echo.c \
+../iniche/src/misclib/userpass.c 
+
+OBJS += \
+./iniche/src/misclib/app_ping.o \
+./iniche/src/misclib/bsdsock.o \
+./iniche/src/misclib/cksum.o \
+./iniche/src/misclib/cu_srv.o \
+./iniche/src/misclib/dhcsetup.o \
+./iniche/src/misclib/genlist.o \
+./iniche/src/misclib/in_utils.o \
+./iniche/src/misclib/iniche_log.o \
+./iniche/src/misclib/iniche_qsort.o \
+./iniche/src/misclib/localtime.o \
+./iniche/src/misclib/memdev.o \
+./iniche/src/misclib/memio.o \
+./iniche/src/misclib/memwrap.o \
+./iniche/src/misclib/menulib.o \
+./iniche/src/misclib/menus.o \
+./iniche/src/misclib/msring.o \
+./iniche/src/misclib/netmain.o \
+./iniche/src/misclib/nextcarg.o \
+./iniche/src/misclib/nrmenus.o \
+./iniche/src/misclib/nvfsio.o \
+./iniche/src/misclib/nvparms.o \
+./iniche/src/misclib/parseip.o \
+./iniche/src/misclib/pcycles.o \
+./iniche/src/misclib/profiler.o \
+./iniche/src/misclib/rawiptst.o \
+./iniche/src/misclib/reshost.o \
+./iniche/src/misclib/rfsim.o \
+./iniche/src/misclib/rttest.o \
+./iniche/src/misclib/soperr.o \
+./iniche/src/misclib/strilib.o \
+./iniche/src/misclib/strlib.o \
+./iniche/src/misclib/strtol.o \
+./iniche/src/misclib/syslog.o \
+./iniche/src/misclib/task.o \
+./iniche/src/misclib/tcp_echo.o \
+./iniche/src/misclib/tcpcksum.o \
+./iniche/src/misclib/testmenu.o \
+./iniche/src/misclib/tk_crnos.o \
+./iniche/src/misclib/ttyio.o \
+./iniche/src/misclib/udp_echo.o \
+./iniche/src/misclib/userpass.o 
+
+C_DEPS += \
+./iniche/src/misclib/app_ping.d \
+./iniche/src/misclib/bsdsock.d \
+./iniche/src/misclib/cksum.d \
+./iniche/src/misclib/cu_srv.d \
+./iniche/src/misclib/dhcsetup.d \
+./iniche/src/misclib/genlist.d \
+./iniche/src/misclib/in_utils.d \
+./iniche/src/misclib/iniche_log.d \
+./iniche/src/misclib/iniche_qsort.d \
+./iniche/src/misclib/localtime.d \
+./iniche/src/misclib/memdev.d \
+./iniche/src/misclib/memio.d \
+./iniche/src/misclib/memwrap.d \
+./iniche/src/misclib/menulib.d \
+./iniche/src/misclib/menus.d \
+./iniche/src/misclib/msring.d \
+./iniche/src/misclib/netmain.d \
+./iniche/src/misclib/nextcarg.d \
+./iniche/src/misclib/nrmenus.d \
+./iniche/src/misclib/nvfsio.d \
+./iniche/src/misclib/nvparms.d \
+./iniche/src/misclib/parseip.d \
+./iniche/src/misclib/pcycles.d \
+./iniche/src/misclib/profiler.d \
+./iniche/src/misclib/rawiptst.d \
+./iniche/src/misclib/reshost.d \
+./iniche/src/misclib/rfsim.d \
+./iniche/src/misclib/rttest.d \
+./iniche/src/misclib/soperr.d \
+./iniche/src/misclib/strilib.d \
+./iniche/src/misclib/strlib.d \
+./iniche/src/misclib/strtol.d \
+./iniche/src/misclib/syslog.d \
+./iniche/src/misclib/task.d \
+./iniche/src/misclib/tcp_echo.d \
+./iniche/src/misclib/tcpcksum.d \
+./iniche/src/misclib/testmenu.d \
+./iniche/src/misclib/tk_crnos.d \
+./iniche/src/misclib/ttyio.d \
+./iniche/src/misclib/udp_echo.d \
+./iniche/src/misclib/userpass.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+iniche/src/misclib/%.o: ../iniche/src/misclib/%.c
+	@echo 'Building file: $<'
+	@echo 'Invoking: Cygwin C Compiler'
+	gcc -U__INT_FAST32_MAX__ -U__SIG_ATOMIC_MAX__ -U__FLT_EPSILON__ -U__DEC64_MANT_DIG__ -U__DBL_MIN__ -U__INT_LEAST64_TYPE__ -U__SCHAR_MAX__ -U__DEC128_MANT_DIG__ -U__UINTPTR_TYPE__ -U__DBL_MIN_10_EXP__ -U__unix__ -U__DBL_DENORM_MIN__ -U_stdcall -U__SHRT_MAX__ -U__DBL_HAS_DENORM__ -U__SIZEOF_WCHAR_T__ -U__SIZEOF_PTRDIFF_T__ -U__GXX_TYPEINFO_EQUALITY_INLINE -U__DEC32_MAX__ -U__SIZEOF_DOUBLE__ -U__FLT_MIN_EXP__ -U__LDBL_MANT_DIG__ -U__DEC32_EPSILON__ -U__INTPTR_MAX__ -U__LDBL_DIG__ -U__INT_LEAST8_MAX__ -U__LDBL_DENORM_MIN__ -U__DEC32_MIN_EXP__ -U__DEC128_MAX__ -U__INT_FAST8_MAX__ -U__UINT_LEAST8_MAX__ -U__cdecl -U__GNUC_PATCHLEVEL__ -U__DEC32_SUBNORMAL_MIN__ -U__SIZEOF_POINTER__ -U__WINT_MAX__ -U__LDBL_HAS_INFINITY__ -U__FLT_MAX_10_EXP__ -U__DEC64_MIN_EXP__ -U__CYGWIN32__ -U__DEC32_MIN__ -U__LDBL_MIN_10_EXP__ -U__i386 -U__SIZEOF_LONG_LONG__ -U__UINT_FAST8_MAX__ -U__DEC64_MAX_EXP__ -U__GXX_MERGED_TYPEINFO_NAMES -U__INT16_MAX__ -U__UINT16_C(c) -U__LDBL_MAX_EXP__ -U__UINT_LEAST64_MAX__ -U__FLT_MANT_DIG__ -U__FLT_RADIX__ -U__INTMAX_C(c) -U__FLT_DIG__ -U__UINT8_MAX__ -U__INTMAX_TYPE__ -U__LDBL_MIN_EXP__ -U__INT_LEAST32_TYPE__ -U__pentiumpro__ -U__UINT32_MAX__ -U__i686 -U__LONG_LONG_MAX__ -U__DBL_HAS_INFINITY__ -U__UINT32_C(c) -U__DBL_MAX_10_EXP__ -U__FLT_HAS_QUIET_NAN__ -U__SIG_ATOMIC_TYPE__ -U__FLT_HAS_DENORM__ -U__NO_INLINE__ -U__INT_LEAST16_MAX__ -U__DEC128_EPSILON__ -U__GNUC__ -U__INT_LEAST8_TYPE__ -U__unix -U__DEC128_MIN_EXP__ -U__fastcall -U__UINT_FAST64_TYPE__ -U__INTPTR_TYPE__ -U__INT64_TYPE__ -U__DBL_MAX_EXP__ -U__WINT_TYPE__ -U__DEC64_SUBNORMAL_MIN__ -U__INT_FAST32_TYPE__ -U__UINT_FAST8_TYPE__ -U__PTRDIFF_MAX__ -U__INT_LEAST16_TYPE__ -U__SIZE_TYPE__ -U__DEC32_MANT_DIG__ -U__DBL_MAX__ -U__i686__ -U__INT_FAST16_MAX__ -U__UINT16_MAX__ -U__UINT_LEAST8_TYPE__ -U__UINT_FAST32_TYPE__ -Uunix -U__stdcall -U__FLT_EVAL_METHOD__ -U_X86_ -U__UINT16_TYPE__ -U__UINT32_TYPE__ -U__PRAGMA_REDEFINE_EXTNAME -U__FLT_MAX_EXP__ -U__UINT_FAST16_MAX__ -U__LDBL_EPSILON__ -U__DEC64_MIN__ -U__UINT64_C(c) -U__REGISTER_PREFIX__ -U__INT_FAST8_TYPE__ -U__LDBL_HAS_QUIET_NAN__ -U__INT8_MAX__ -U__FLT_DENORM_MIN__ -U__CHAR32_TYPE__ -U__WCHAR_MIN__ -U__CYGWIN__ -U__UINTMAX_MAX__ -U__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8 -Ui386 -U__FLT_MIN_10_EXP__ -U__UINTPTR_MAX__ -U__UINT64_MAX__ -U__WCHAR_MAX__ -U__INT_FAST16_TYPE__ -U__LDBL_HAS_DENORM__ -U__GXX_ABI_VERSION -U__UINTMAX_C(c) -U__INT_LEAST64_MAX__ -U__DBL_MIN_EXP__ -U__UINT_LEAST32_TYPE__ -U__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 -U__SIZEOF_LONG_DOUBLE__ -U__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 -U__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 -U__SIZE_MAX__ -U__UINT_FAST32_MAX__ -U__INT_FAST64_MAX__ -U_cdecl -U__SIG_ATOMIC_MIN__ -U__FLT_MIN__ -U__DBL_EPSILON__ -U__UINT_FAST64_MAX__ -U__DEC128_MAX_EXP__ -U__SIZEOF_SIZE_T__ -U__DBL_DIG__ -U__UINT_LEAST16_MAX__ -U__GNUC_MINOR__ -U__DEC64_MAX__ -U__BIGGEST_ALIGNMENT__ -U__UINT_LEAST16_TYPE__ -U__WINT_MIN__ -U__INT16_C(c) -U__INT64_MAX__ -U__INT_MAX__ -U__DEC64_EPSILON__ -U__INT32_C(c) -U__INT32_TYPE__ -U__INT_LEAST32_MAX__ -U__STDC__ -U__LDBL_MIN__ -U__INT8_TYPE__ -U__SIZEOF_FLOAT__ -U__INTMAX_MAX__ -U__INT_FAST64_TYPE__ -U__UINT64_TYPE__ -U__DEC32_MAX_EXP__ -U__VERSION__ -U__INT32_MAX__ -U__INT64_C(c) -U__SIZEOF_WINT_T__ -U__SIZEOF_INT__ -U__USER_LABEL_PREFIX__ -U__LONG_MAX__ -U__pentiumpro -U__INT8_C(c) -U__INT16_TYPE__ -U__UINT_LEAST32_MAX__ -U__PTRDIFF_TYPE__ -U__UINT8_C(c) -U__i386__ -U__CHAR_BIT__ -U__DEC128_SUBNORMAL_MIN__ -U__DBL_HAS_QUIET_NAN__ -U__SIZEOF_SHORT__ -U__DEC_EVAL_METHOD__ -U__FLT_MAX__ -U__DBL_MANT_DIG__ -U__UINT_FAST16_TYPE__ -U__UINT_LEAST64_TYPE__ -U__DEC128_MIN__ -U__GNUC_GNU_INLINE__ -U_fastcall -U__declspec(x) -U__FLT_HAS_INFINITY__ -U__UINT8_TYPE__ -U__STDC_HOSTED__ -U__DECIMAL_DIG__ -U__LDBL_MAX_10_EXP__ -U__SIZEOF_LONG__ -U__UINTMAX_TYPE__ -U__LDBL_MAX__ -U__FINITE_MATH_ONLY__ -U__WCHAR_TYPE__ -U__CHAR16_TYPE__ -O2 -g -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+

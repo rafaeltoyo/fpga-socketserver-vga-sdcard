@@ -1,0 +1,43 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+O_SRCS := 
+CPP_SRCS := 
+C_UPPER_SRCS := 
+C_SRCS := 
+S_UPPER_SRCS := 
+OBJ_SRCS := 
+ASM_SRCS := 
+CXX_SRCS := 
+C++_SRCS := 
+CC_SRCS := 
+C++_DEPS := 
+OBJS := 
+C_DEPS := 
+CC_DEPS := 
+CPP_DEPS := 
+EXECUTABLES := 
+CXX_DEPS := 
+C_UPPER_DEPS := 
+
+# Every subdirectory with source files must be described here
+SUBDIRS := \
+iniche/src/vfs \
+iniche/src/tftp \
+iniche/src/telnet \
+iniche/src/tcp \
+iniche/src/nios2 \
+iniche/src/net \
+iniche/src/misclib \
+iniche/src/ipmc \
+iniche/src/ip \
+iniche/src/ftp \
+iniche/src/autoip4 \
+iniche/src \
+iniche/src/allports \
+drivers/src \
+. \
+UCOSII/src \
+HAL/src \
+

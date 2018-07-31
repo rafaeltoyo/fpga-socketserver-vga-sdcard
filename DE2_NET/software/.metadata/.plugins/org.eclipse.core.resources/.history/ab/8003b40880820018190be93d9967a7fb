@@ -1,0 +1,54 @@
+/*
+ * my_sdcard.h
+ *
+ *  Created on: 06/07/2018
+ *      Author: Rafael
+ */
+
+#ifndef MY_SDCARD_H_
+#define MY_SDCARD_H_
+
+/* INT TYPES */
+#include <stdint.h>
+/* BSP Defines */
+#include "system.h"
+/* Altera SD Card Lib */
+#include "altera_up_sd_card_avalon_interface.h"
+
+/* LIB UTILS */
+#define CMD_READ 0x11;
+#define CMD_WRITE 0x18;
+#define REG_CMD_ARG ((int*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE + 556))	//4 bytes
+#define REG_CMD ((short int*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE + 560)) //2 bytes
+#define REG_ASR ((short int*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE + 564))	//2 bytes
+#define REG_RXTX ((char*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE))			//512 bytes
+/* BLOCK SIZE */
+#define SDCARD_BLOCK_SIZE 		512 //bytes
+/* Sample Memory */
+#define SAMPLE_ID1 				101
+#define SAMPLE_ID2 				102
+#define SAMPLE_MAX_VALUE 		255
+#define SAMPLE_POS_FIRST_DAT 	4
+/* Read Macro */
+#define SAMPLE_RD_SIZE(x) \
+	(INT16U)( (((int) x[1])<<8)|((int)x[0]) )
+#define SAMPLE_RD_ITER(x) \
+	(INT16U)( (((int) x[3])<<8)|((int)x[2]) )
+/* Write Macro */
+#define SAMPLE_WR_SIZE(x,y) \
+		x[1] = (INT8U) ((((int) y)>>8)&0xFF); \
+		x[0] = (INT8U) (((int) y)&0xFF);
+#define SAMPLE_WR_ITER(x,y) \
+		x[3] = (INT8U) ((((int) y)>>8)&0xFF); \
+		x[2] = (INT8U) (((int) y)&0xFF);
+
+extern char bloco101[SDCARD_BLOCK_SIZE];
+extern char bloco102[SDCARD_BLOCK_SIZE];
+
+void escreveBloco(char* dados, uint32_t n_bloco);
+
+void leBloco(char* dados, uint32_t n_bloco);
+
+void mandaBlocoUART(char* dados);
+
+#endif /* MY_SDCARD_H_ */

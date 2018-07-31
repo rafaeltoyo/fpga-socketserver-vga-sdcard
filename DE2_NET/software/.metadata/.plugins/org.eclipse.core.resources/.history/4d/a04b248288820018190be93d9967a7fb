@@ -1,0 +1,47 @@
+/*
+ * my_sdcard.h
+ *
+ *  Created on: 06/07/2018
+ *      Author: Rafael
+ */
+
+#ifndef MY_SDCARD_H_
+#define MY_SDCARD_H_
+
+/* INT TYPES */
+#include <stdint.h>
+/* BSP Defines */
+#include "system.h"
+/* Altera SD Card Lib */
+#include "altera_up_sd_card_avalon_interface.h"
+
+/* LIB UTILS */
+#define CMD_READ 0x11;
+#define CMD_WRITE 0x18;
+#define REG_CMD_ARG ((int*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE + 556))	//4 bytes
+#define REG_CMD ((short int*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE + 560)) //2 bytes
+#define REG_ASR ((short int*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE + 564))	//2 bytes
+#define REG_RXTX ((char*)(ALTERA_UP_SD_CARD_AVALON_INTERFACE_0_BASE))			//512 bytes
+/* BLOCK SIZE */
+#define SDCARD_BLOCK_SIZE 		512 //bytes
+/* Sample Memory */
+#define SAMPLE_ID1 				101
+#define SAMPLE_ID2 				102
+#define SAMPLE_ID3 				103
+#define SAMPLE_MAX_VALUE 		255
+
+extern INT8U bloco101[SDCARD_BLOCK_SIZE];
+extern INT8U bloco102[SDCARD_BLOCK_SIZE];
+extern INT8U bloco103[SDCARD_BLOCK_SIZE];
+
+/* Funções base do SD Card */
+void escreveBloco(char* dados, uint32_t n_bloco);
+void leBloco(char* dados, uint32_t n_bloco);
+
+/* Gerenciar de amostras */
+void loadSamples();
+void storeSamples();
+void readSamples(INT8U data, INT16U size);
+void writeSample(INT8U data);
+
+#endif /* MY_SDCARD_H_ */

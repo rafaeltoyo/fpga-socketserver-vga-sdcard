@@ -1,0 +1,138 @@
+/*
+ * my_threads.c
+ *
+ *  Created on: 06/07/2018
+ *      Author: Rafael
+ */
+
+/*
+ * Include files:
+ *
+ * <stdlib.h>: Contains C "rand()" function.
+ * <stdio.h>: Contains C "printf()" function.
+ * includes.h: This is the default MicroC/OS-II include file.
+ * simple_socket_servert.h: Our simple socket server app's declarations.
+ * altera_avalon_pio_regs.h: Defines register-access macros for PIO peripheral.
+ * alt_error_handler.h: Altera Error Handler suite of development error
+ * handling functions.
+ */
+
+/* <stdlib.h>: Contains C "rand()" function. */
+#include <stdlib.h>
+
+/* <stdio.h>: Contains C "printf()" function. */
+#include <stdio.h>
+
+/* MicroC/OS-II definitions */
+#include "includes.h"
+
+/* Device driver accessor macros for peripherial I/O component
+ * (used for leds).) */
+#include "altera_avalon_pio_regs.h"
+
+/* Simple Socket Server definitions */
+#include "simple_socket_server.h"
+
+/* Altera Error Handler suite of development error
+ * handling functions. */
+#include "alt_error_handler.h"
+
+#include "VGA.h"
+#include "sdcard/my_sdcard.h"
+
+/**
+ * DisplayUpdateVGA - Thread escrita no VGA
+ */
+
+void DisplayUpdateVGATask() {
+
+	INT8U error_code;
+
+	/* SD Card */
+	INT16U num_sample, iter_sample;
+	INT16U last_sample, current_sample;
+	INT8U buffer[VGA_WIDTH/2];
+
+	/* VGA */
+	INT16U iterX, iterY;
+	VGA_Ctrl_Reg vga_ctrl_set;
+
+	/* VGA Controller Configuration */
+	vga_ctrl_set.VGA_Ctrl_Flags.RED_ON = 1;
+	vga_ctrl_set.VGA_Ctrl_Flags.GREEN_ON = 1;
+	vga_ctrl_set.VGA_Ctrl_Flags.BLUE_ON = 1;
+	vga_ctrl_set.VGA_Ctrl_Flags.CURSOR_ON = 0;
+
+	Vga_Write_Ctrl(VGA_0_BASE, vga_ctrl_set.Value);
+
+	/* Background Color */
+	Set_Pixel_Off_Color(1023, 1023, 1023);
+	/* Draw Color */
+	Set_Pixel_On_Color(1023, 0, 0);
+
+	for (;;) {
+		/* Esperar comando de atualizar o VGA */
+		OSFlagPend(DisplayVGAEventFlag, 0x1, OS_FLAG_WAIT_SET_ANY + OS_FLAG_CONSUME, 0, &error_code);
+		alt_uCOSIIErrorHandler(error_code, 0);
+
+		/* Solicitar SD Card, ler 2 blocos (Data com posicao) */
+		OSSemPend(SDCardSem, 0, &error_code);
+		alt_uCOSIIErrorHandler(error_code, 0);
+
+		readSamples(buffer, VGA_WIDTH/2);
+
+		OSSemPost(SDCardSem);
+
+		/* Limpar a tela do VGA */
+		for (iterX = 0; iterX < VGA_WIDTH; iterX++) {
+			for (iterY = 0; iterY < VGA_HEIGHT; iterY++) {
+				Vga_Clr_Pixel(VGA_0_BASE, iterX, iterY);
+			}
+		}
+
+		/* Desenhar o gráfico */
+		last_sample = (INT16U) VGA_HEIGHT * (1.0f - ( (float) buffer[0]/SAMPLE_MAX_VALUE ));
+		for (iterX = 0; iterX < VGA_WIDTH; iterX++) {
+			if (iterX%2 == 0) {
+				current_sample = VGA_HEIGHT * (1.0f - ( (float) buffer[iterX/2]/SAMPLE_MAX_VALUE ));
+			}
+			Vga_Set_Pixel(VGA_0_BASE, iterX, (INT16U) (current_sample + last_sample)/2);
+			last_sample = current_sample;
+		}
+	}
+}
+
+/**
+ * DisplayReadButtons - Thread de leitura dos botoes para atualização do gráfico
+ */
+
+void DisplayReadButtonsTask() {
+	INT8U error_code;
+	INT32U ButtonData;
+	INT8U pushed = 0;
+
+	/* Configurar botoes como entrada */
+	IOWR_ALTERA_AVALON_PIO_DIRECTION(SWITCH_PIO_BASE, 0xFFFFFFFF);
+
+	for (;;) {
+		OSTimeDlyHMSM(0,0,0,200);
+
+		/* Ler botoes */
+		ButtonData = IORD_ALTERA_AVALON_PIO_DATA(SWITCH_PIO_BASE);
+
+		/* Botao pressionado ? */
+
+		if (pushed == 0) {
+			if (ButtonData & 0xF) {
+				OSFlagPost(DisplayVGAEventFlag, 0x1, OS_FLAG_SET, &error_code);
+				alt_uCOSIIErrorHandler(error_code, 0);
+				pushed = 1;
+				printf("Botao pressionado!");
+			}
+		} else {
+			if ((ButtonData & 0xF) == 0) {
+				pushed = 0;
+			}
+		}
+	}
+}

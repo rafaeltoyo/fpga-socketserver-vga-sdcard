@@ -1,0 +1,164 @@
+/*
+ * my_sdcard.c
+ *
+ *  Created on: 06/07/2018
+ *      Author: Rafael
+ */
+
+#include "my_sdcard.h"
+
+unsigned char bloco101[SDCARD_BLOCK_SIZE];
+unsigned char bloco102[SDCARD_BLOCK_SIZE];
+unsigned char bloco103[SDCARD_BLOCK_SIZE];
+
+/**
+ * Escrever um bloco. Variavel dados representa o que se deseja salvar e
+ * n_bloco o número do bloco (essa biblioteca dividirá o sd card em blocos
+ * de 512 bytes).
+ *
+ * @param char* dados
+ * @param uint32_t n_bloco
+ *
+ */
+void escreveBloco(unsigned char* dados, uint32_t n_bloco) {
+
+	int i;
+
+	*REG_CMD_ARG = n_bloco * SDCARD_BLOCK_SIZE;
+
+	for (i = 0; i < SDCARD_BLOCK_SIZE; i++) {
+		REG_RXTX[i] = dados[i];
+	}
+
+	*REG_CMD = CMD_WRITE;
+
+	while ((*REG_ASR & 0x04) != 0)
+		; //espera terminar comando
+}
+
+/**
+ * Escrever um bloco. Variavel dados representa o buffer para salvar os
+ * dados lidos e n_bloco o número do bloco (essa biblioteca dividirá o
+ * sd card em blocos de 512 bytes).
+ *
+ * @param char* dados
+ * @param uint32_t n_bloco
+ *
+ */
+void leBloco(unsigned char* dados, uint32_t n_bloco) {
+	int i;
+
+	*REG_CMD_ARG = n_bloco * SDCARD_BLOCK_SIZE;
+	*REG_CMD = CMD_READ;
+
+	while ((*REG_ASR & 0x04) != 0) ; //espera terminar comando
+
+	for (i = 0; i < SDCARD_BLOCK_SIZE; i++) {
+		dados[i] = REG_RXTX[i];
+	}
+}
+
+void loadSamples()
+{
+	//while ((*REG_ASR & 0x02) == 0); // espera até sd card conectado
+
+	//leBloco(bloco101, SAMPLE_ID1);
+	//leBloco(bloco102, SAMPLE_ID2);
+	//leBloco(bloco103, SAMPLE_ID3);
+}
+
+void storeSamples()
+{
+	//while ((*REG_ASR & 0x02) == 0); // espera até sd card conectado
+
+	//escreveBloco(bloco101, SAMPLE_ID1);
+	//escreveBloco(bloco102, SAMPLE_ID2);
+	//escreveBloco(bloco103, SAMPLE_ID3);
+}
+
+void readSamples(unsigned char* data, unsigned short size) {
+	short iter, mem_size, mem_end_ptr, offset;
+	char mem_end_id;
+
+	mem_size = (bloco103[1] << 8) & bloco103[0];
+	mem_end_ptr = (bloco103[3] << 8) & bloco103[2];
+	mem_end_id = bloco103[4];
+
+	offset = 0;
+	if (size < mem_size) {
+		offset = size;
+	}
+
+	for (iter = 0; iter < size; iter++) {
+		if (size >= mem_size) {
+			data[size - 1 - iter] = 0x00;
+			break;
+		}
+
+		if (mem_end_id == 0) {
+			data[size - 1 - iter - offset] = bloco101[mem_end_ptr];
+		} else {
+			data[size - 1 - iter - offset] = bloco102[mem_end_ptr];
+		}
+		if (--mem_end_ptr < 0) {
+			mem_end_ptr = SDCARD_BLOCK_SIZE - 1;
+			mem_end_id = !mem_end_id;
+		}
+	}
+}
+
+void writeSample(unsigned char data) {
+	short mem_size, mem_end_ptr;
+	char mem_end_id;
+
+	mem_size = ( ((bloco103[1] << 8) & bloco103[0]) + 1 ) % (2 * SDCARD_BLOCK_SIZE);
+	mem_end_ptr = ((bloco103[3] << 8) & bloco103[2]) + 1;
+	mem_end_id = bloco103[4];
+
+	if (mem_end_ptr >= SDCARD_BLOCK_SIZE) {
+		mem_end_ptr -= SDCARD_BLOCK_SIZE;
+		bloco103[4] = !mem_end_id;
+	}
+
+	bloco103[1] = (mem_size>>8) & 0xFF;
+	bloco103[0] = mem_size & 0xFF;
+
+	bloco103[3] = (mem_end_ptr>>8) & 0xFF;
+	bloco103[2] = mem_end_ptr & 0xFF;
+}
+
+void printSamples(unsigned char* data, unsigned short size)
+{
+	int iter;
+	printf("Samples: ");
+	for (iter = 0; iter < size; iter++) {
+		printf(" %d", data[iter]);
+	}
+	printf("\n");
+}
+
+int sampleDecoder(unsigned char* input, int size)
+{
+	int iter, s_size, decoding;
+	unsigned char number;
+
+	s_size = 0;
+	decoding = 0;
+	number = 0;
+
+	for (iter = 0; iter < size; iter++) {
+		if (input[iter] < '0' || input[iter] > '9') {
+			if (decoding) {
+				input[s_size++] = number;
+				decoding = 0;
+				number = 0;
+			}
+		} else {
+			decoding = 1;
+			number = 10 * number + (input[iter] - '0');
+		}
+		input[iter] = 0;
+	}
+
+	return s_size;
+}
